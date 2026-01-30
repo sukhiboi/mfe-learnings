@@ -36,7 +36,7 @@ module.exports = {
           options: {
             presets:[
               ['@babel/preset-react', {
-                runtime: 'automatic' // Add this
+                runtime: 'automatic'
               }]
             ]
           }

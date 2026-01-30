@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --mode development",
-    "start-mfe": "webpack serve --mode development -c ./webpack.mfe.config.js",
+    "start:mfe": "webpack serve --mode development -c webpack.mfe.config.js",
     "build": "webpack --mode production"
   },
   "peerDependencies": {
@@ -14,9 +14,9 @@
     "@babel/core": "7.26.10",
     "@babel/preset-react": "7.22.5",
     "babel-loader": "9.1.3",
-    "html-webpack-plugin": "^5.5.3",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
+    "html-webpack-plugin": "5.5.3",
+    "webpack": "5.94.0",
+    "webpack-cli": "5.1.4",
     "webpack-dev-server": "5.2.1"
   }
 }
