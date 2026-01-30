@@ -1,5 +1,5 @@
 {
-  "name": "container",
+  "name": "@simple-microfrontend/container",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --mode development -c webpack.config.js",

@@ -1,5 +1,5 @@
 {
-  "name": "host2",
+  "name": "@simple-microfrontend/host2",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --mode development",
