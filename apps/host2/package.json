@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --mode development",
+    "start-mfe": "webpack serve --mode development -c ./webpack.mfe.config.js",
     "build": "webpack --mode production"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
@@ -16,6 +17,6 @@
     "html-webpack-plugin": "^5.5.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "5.2.1"
   }
 }

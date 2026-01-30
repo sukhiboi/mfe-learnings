@@ -1,9 +1,10 @@
 import React from 'react';
+import HelloWorld from "./components/HelloWorld/HelloWorld";
 
 function App() {
   return (
     <div>
-      <h1>Host 1</h1>
+      <HelloWorld />
     </div>
   );
 }

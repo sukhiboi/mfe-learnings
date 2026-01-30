@@ -1,26 +1,24 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const packageJson = require("./package.json");
 const { ModuleFederationPlugin } = require("webpack").container;
+const packageJson = require("./package.json");
 
-const remotes = {
-  Host1: "host1@http://localhost:3001/remoteEntry.js",
-  Host2: "host2@http://localhost:3002/remoteEntry.js",
+const exposes = {
+  "./HelloWorld": "./src/components/HelloWorld/HelloWorld"
 }
 
 const sharedConfig = {
   react: {
     singleton: true,
-    requiredVersion: packageJson.dependencies.react,
-    eager: true
+    requiredVersion: packageJson.peerDependencies.react,
+    strictVersion: false,
   },
   "react-dom": {
     singleton: true,
-    requiredVersion: packageJson.dependencies["react-dom"],
-    eager: true
+    requiredVersion: packageJson.peerDependencies["react-dom"],
+    strictVersion: false,
   },
 };
-
 
 module.exports = {
   entry: './src/index.js',
@@ -36,7 +34,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets:['@babel/preset-react']
+            presets:[
+              ['@babel/preset-react', {
+                runtime: 'automatic' // Add this
+              }]
+            ]
           }
         }
       }
@@ -47,12 +49,14 @@ module.exports = {
       template: './public/index.html'
     }),
     new ModuleFederationPlugin({
-      shared: sharedConfig,
-      remotes
+      name: "host2",
+      filename: "remoteEntry.js",
+      exposes,
+      shared: sharedConfig
     })
   ],
   devServer: {
-    port: 3000,
+    port: 3002,
     hot: true
   }
 };
