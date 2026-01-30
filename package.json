@@ -5,5 +5,11 @@
   "license": "MIT",
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
 }

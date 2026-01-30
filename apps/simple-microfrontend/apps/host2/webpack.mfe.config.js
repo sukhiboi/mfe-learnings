@@ -1,11 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const packageJson = require("./package.json");
 
 const exposes = {
-  "./HelloWorld": "./src/components/HelloWorld/HelloWorld"
-}
+  "./HelloWorld": "./src/components/HelloWorld/HelloWorld",
+};
 
 const sharedConfig = {
   react: {
@@ -21,10 +21,10 @@ const sharedConfig = {
 };
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -32,31 +32,34 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets:[
-              ['@babel/preset-react', {
-                runtime: 'automatic' // Add this
-              }]
-            ]
-          }
-        }
-      }
-    ]
+            presets: [
+              [
+                "@babel/preset-react",
+                {
+                  runtime: "automatic", // Add this
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: "./public/index.html",
     }),
     new ModuleFederationPlugin({
       name: "host2",
       filename: "remoteEntry.js",
       exposes,
-      shared: sharedConfig
-    })
+      shared: sharedConfig,
+    }),
   ],
   devServer: {
     port: 3002,
-    hot: true
-  }
+    hot: true,
+  },
 };
