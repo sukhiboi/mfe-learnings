@@ -1,0 +1,20 @@
+{
+  "name": "nested-microfrontend",
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:host1": "yarn workspace @nested-microfrontend/host1 start:mfe",
+    "start:host2": "yarn workspace @nested-microfrontend/host2 start:mfe",
+    "start:host3": "yarn workspace @nested-microfrontend/host3 start:mfe",
+    "start:host4": "yarn workspace @nested-microfrontend/host4 start:mfe",
+    "start:container": "yarn workspace @nested-microfrontend/container start",
+    "start": "concurrently \"yarn workspace nested-microfrontend run start:host1\" \"yarn workspace nested-microfrontend run start:host2\" \"yarn workspace nested-microfrontend run start:host3\" \"yarn workspace nested-microfrontend run start:host4\" \"wait-on http://localhost:3001/remoteEntry.js && wait-on http://localhost:3002/remoteEntry.js && wait-on http://localhost:3003/remoteEntry.js && wait-on http://localhost:3004/remoteEntry.js && yarn workspace nested-microfrontend run start:container\"",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "concurrently": "9.2.1",
+    "wait-on": "9.0.3"
+  }
+}
