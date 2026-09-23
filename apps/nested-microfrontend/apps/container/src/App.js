@@ -5,7 +5,11 @@ const HelloWorldHost2 = React.lazy(() => import("Host2/HelloWorld"));
 
 function App() {
   return (
-    <div>
+    <div style={{
+      background: "rgb(255 0 0 / 0.5)",
+      border: "2px solid red",
+      margin: "1rem"
+    }}>
       <h1>Container</h1>
       <HelloWorldHost1 />
       <HelloWorldHost2 />
